@@ -1,0 +1,68 @@
+.hidden
+  visibility hidden
+
+.container 
+  width 100%
+  height 100%
+  position absolute
+  padding-top 50px
+  overflow-y hidden
+
+.roulette-wheel 
+  font-family Lato, sans-serif
+  font 600 normal 1.5em
+  position relative
+  margin 0 auto
+  margin-top -5px
+  width 1000px
+
+.wheel-stop 
+  display inline-block
+  position absolute
+  z-index 1
+  transition transform 0.25s ease
+  transition-delay 5s
+  font-size 1.3em
+
+.wheel-stop:nth-child(7n + 2) 
+  color magenta
+
+.wheel-stop:nth-child(7n + 3) 
+  color purple
+
+.wheel-stop:nth-child(7n + 4) 
+  color blue
+
+.wheel-stop:nth-child(7n + 5) 
+  color green
+
+.wheel-stop:nth-child(7n + 6) 
+  color goldenrod
+
+.wheel-stop:nth-child(7n) 
+  color orange
+
+.wheel-stop:nth-child(7n + 1) 
+  color red
+    
+.unicorn 
+  margin 100px 100px
+  z-index 2
+  transform rotate(0deg)
+  transform-origin 50% 50%
+  transition all 5s ease
+
+.names-input
+  border #919191
+  border-style dotted
+  border-radius 10px
+
+.spin-btn
+  width 100%
+
+.sidebar 
+  position absolute
+  top 0
+  right 0
+  padding-right 20px;
+    
