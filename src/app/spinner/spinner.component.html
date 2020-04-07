@@ -3,7 +3,7 @@
     <img
       id="unicorn"
       class="unicorn"
-      src="assets/unicorn.gif"
+      src="{{currentPointer.src}}"
       width="225px"
       height="225px"
       style="position: absolute; left: 200px; top: 133px;"
@@ -29,6 +29,7 @@
           class="names-input"
           [(ngModel)]="namesInput"
           (keyup.enter)="addNames()"
+          (input)="addNames()"
           placeholder="Names"
           rows="23"
           cols="30"

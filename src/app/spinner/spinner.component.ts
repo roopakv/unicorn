@@ -1,5 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 
+const rotationPointers = {
+  UNICORN: {
+    src: 'assets/unicorn.gif',
+    pointerAngle: 56
+  },
+  ELSA: {
+    src: 'assets/elsa.png',
+    pointerAngle: 35
+  }
+};
+
 @Component({
   selector: "app-spinner",
   templateUrl: "./spinner.component.html",
@@ -10,6 +21,8 @@ export class SpinnerComponent implements OnInit {
   namesArray = [];
   spinSound;
   winSound;
+  numberOfRuns = 0;
+  currentPointer = rotationPointers.UNICORN;
   constructor() {
     this.spinSound = new Audio();
     this.spinSound.src = "../../assets/magic-chime-01.mp3";
@@ -24,14 +37,23 @@ export class SpinnerComponent implements OnInit {
     this.spin();
   }
 
+  maybeSwitchPointer() {
+    const names = this.namesInput.split("\n").filter(n => n !== undefined && n !== "");
+    if (names.includes("elsa")) {
+      this.currentPointer = rotationPointers.ELSA;
+    } else {
+      this.currentPointer = rotationPointers.UNICORN;
+    }
+  }
+
   addNames() {
     if (this.namesInput !== "") {
-      var i = 0;
-      var radiusPx = 345;
+      let i = 0;
+      const radiusPx = 345;
       const names = this.namesInput.split("\n").filter(n => n !== undefined && n !== "");
-      console.log(names);
-      var angle = (2 * Math.PI) / names.length;
-      var initialAngle = Math.PI / 2;
+      // console.log(names);
+      const angle = (2 * Math.PI) / names.length;
+      const initialAngle = Math.PI / 2;
       this.namesArray = [];
       names.forEach(n => {
         const xPos = radiusPx + radiusPx * Math.cos(initialAngle + i * angle);
@@ -39,6 +61,7 @@ export class SpinnerComponent implements OnInit {
         this.namesArray.push({ value: n, class: "wheel-stop js-wheel-stop", xPos, yPos });
         i++;
       });
+      this.maybeSwitchPointer();
     }
   }
 
@@ -47,12 +70,11 @@ export class SpinnerComponent implements OnInit {
     const winner = Math.floor(Math.random() * 553105243) % this.namesArray.length;
 
     const initialAngleDegrees = 90;
-    const hornAngleDegrees = 56;
     const fullRotations = 6;
     const rotation =
       initialAngleDegrees +
-      hornAngleDegrees +
-      fullRotations * 360 +
+      this.currentPointer.pointerAngle +
+      (fullRotations * 360 * (++this.numberOfRuns)) +
       (winner * 360) / this.namesArray.length;
     console.log("or", rotation);
     document.getElementById("unicorn").style.transform = "rotate(" + rotation + "deg)";
