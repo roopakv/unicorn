@@ -4,17 +4,14 @@ const rotationPointers = {
   UNICORN: {
     src: 'assets/unicorn.gif',
     pointerAngle: 56,
-    height: '225px',
   },
   ELSA: {
     src: 'assets/elsa.png',
     pointerAngle: 35,
-    height: '225px',
   },
   CHETAN: {
     src: 'assets/chetan.png',
     pointerAngle: 40,
-    height: '393px',
   }
 };
 
