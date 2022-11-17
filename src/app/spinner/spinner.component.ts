@@ -8,6 +8,10 @@ const rotationPointers = {
   ELSA: {
     src: 'assets/elsa.png',
     pointerAngle: 35
+  },
+  CHETAN: {
+    src: 'assets/chetan.png',
+    pointerAngle: 40
   }
 };
 
@@ -41,6 +45,8 @@ export class SpinnerComponent implements OnInit {
     const names = this.namesInput.split("\n").filter(n => n !== undefined && n !== "");
     if (names.includes("elsa")) {
       this.currentPointer = rotationPointers.ELSA;
+    } else if (names.includes("chetan")) {
+      this.currentPointer = rotationPointers.CHETAN;
     } else {
       this.currentPointer = rotationPointers.UNICORN;
     }
